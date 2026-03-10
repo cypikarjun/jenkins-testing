@@ -1,14 +1,10 @@
-apiVersion: argoproj.io/v1alpha1
-kind: Workflow
+apiVersion: v1
+kind: Pod
 metadata:
-  generateName: hello-
-  namespace: argo
+  name: nginx
 spec:
-  serviceAccountName: argo-argo-workflows-workflow-controller
-  entrypoint: whalesay
-  templates:
-  - name: whalesay
-    container:
-      image: docker/whalesay
-      command: [cowsay]
-      args: ["hello argo workflow"]
+  containers:
+  - name: nginx
+    image: nginx:1.14.2
+    ports:
+    - containerPort: 80
